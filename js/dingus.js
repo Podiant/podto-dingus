@@ -89,7 +89,18 @@ jQuery(document).ready(
                                 }
                             ).catch(
                                 function(e) {
-                                    $('[data-step="3"] .text-danger').text(e.message);
+                                    $('[data-step="3"] .text-danger').text(
+                                        'The good news is that the URI worked. The bad news ' +
+                                        'is we can\'t show you anything about the feed you ' +
+                                        'chose, because your browser elected not to fetch it. This could be ' +
+                                        'because the feed URL doesn\'t exist, it doesn\'t allow requests from ' +
+                                        'web browsers, or it doesn\'t use SSL (and this dingus does). ' +
+                                        'Because we\'re not running any server-side code that would allow us to show ' +
+                                        'you the feed, we have to rely on the browser, which is protecting you from ' +
+                                        'potentially insecure content. This doesn\'t mean that there\'s a problem with the ' +
+                                        'URI or the feed you chose, just that our testing tool isn\'t sophisticated enough ' +
+                                        'to grab the data directly via the browser.'
+                                    );
                                 }
                             ).then(
                                 function(str) {
@@ -151,9 +162,7 @@ jQuery(document).ready(
         $('[data-action="reset"]').on('click',
             function() {
                 $('[data-step="3"].active').removeClass('active');
-
                 $('.text-success, .text-warning, .text-danger').html('');
-
                 $('html, body').animate(
                     {
                         scrollTop: $('[data-step="2"]').offset().top
